@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar class="nav">
+    <ion-title>Mundoplacer</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="principal">
+
+	<div *ngIf="!noExiste && esCliente && analizado">
+		<ion-card class="cliente">
+		    <ion-card-header>
+		    	<h1> Saldo: {{ saldo  }}€ </h1>
+		    </ion-card-header>
+		    <ion-card-content>
+		    	<h2>ID: {{ tagId  }}</h2>
+		    </ion-card-content>
+		</ion-card>
+			<br><br><br>
+			<button ion-button big full (click)="cargaDinero()" class="botones">1 - Recargar Saldo</button>
+			<br><br>
+			<button ion-button big full (click)="compraEntradas()" class="botones">2 - Comprar Entradas</button>
+			<br><br><br><br><br>
+			<button ion-button big full color="secondary" (click)="entraSauna()" class="botones">3 - Usar Entrada</button>
+			<br><br>
+			<button ion-button big full color="secondary" (click)="compraBebida()" class="botones">4 - Comprar Consumición</button>			
+	</div>	
+
+		<ion-card class="nuevo" *ngIf="!noExiste && !esCliente && analizado">
+		    <ion-card-content>
+		    	<h2>ID: {{ tagId  }}</h2>
+		    </ion-card-content>
+		</ion-card>
+			<button ion-button big full (click)="nuevoUsuario()" class="botones" *ngIf="!noExiste && !esCliente && analizado">Nuevo Usuario</button>
+
+		<ion-card *ngIf="noExiste && analizado" class="noexiste">
+		    <ion-card-header>
+		    <h1> La pulsera no existe </h1>
+		    <h2>ID: {{ tagId  }}</h2>
+		    </ion-card-header>
+		</ion-card>
+
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full color="dark" (click)="goInicio()" class="botones">Volver</button>
+		<br><br><br>
+		<button ion-button full color="danger" (click)="resetSauna()" *ngIf="!noExiste && esCliente && analizado" class="botones">Reset</button>
+	</ion-toolbar>
+</ion-footer>
+
+
